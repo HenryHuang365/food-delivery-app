@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e995e2d7-280e-439d-8c34-c403edbb23fa"
+      }
+    },
+    "owner": "jinghuang365"
   }
 }
