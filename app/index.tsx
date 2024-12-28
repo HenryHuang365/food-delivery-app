@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as Icon from "react-native-feather";
+import { themeColors } from "@/theme";
 
 export default function Index() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function Index() {
             >Sydney, AU</Text>
           </View>
         </View>
-        <View className="p-3 bg-gray-300 rounded-full">
+        <View style={{backgroundColor: themeColors.bgColor(1)}} className="p-3 rounded-full">
           <Icon.Sliders height="20" width="20" strokeWidth={2.5} stroke="white"/>
         </View>
       </View>
