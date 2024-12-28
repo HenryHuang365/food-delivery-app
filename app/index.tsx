@@ -1,13 +1,12 @@
-import { Text, TextInput, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { Text, TextInput, View, ScrollView } from 'react-native';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
+import Categories from '@/components/categories';
 
 export default function Index() {
-  const router = useRouter();
-
   return (
     <SafeAreaView className="bg-white">
       <StatusBar style="dark" />
@@ -41,6 +40,14 @@ export default function Index() {
           />
         </View>
       </View>
+
+      {/* Main Page */}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      >
+        <Categories />
+      </ScrollView>
     </SafeAreaView>
   );
 }
