@@ -4,14 +4,17 @@ import { Restaurant } from './featured-row';
 import fullStar from '../assets/images/fullStar.png';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
+import { useRouter } from 'expo-router';
 
 interface RestaurantCardProps {
   item: Restaurant;
 }
 
 export default function RestaurantCard({ item }: RestaurantCardProps) {
+  const router = useRouter();
+
   return (
-    <Pressable>
+    <Pressable onPress={() => router.push('/restaurant-screen')}>
       <View
         style={{
           shadowColor: themeColors.bgColor(0.2),
