@@ -1,10 +1,12 @@
 import { Text, TextInput, View, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
 import Categories from '@/components/categories';
+import { featured } from '@/constants';
+import FeaturedRow from '@/components/featured-row';
 
 export default function Index() {
   return (
@@ -46,7 +48,22 @@ export default function Index() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
       >
+        {/* Categories */}
         <Categories />
+
+        {/* Featured */}
+        <View className="mt-5">
+          {[featured, featured, featured].map((item, index) => {
+            return (
+              <FeaturedRow
+                key={index}
+                title={item.title}
+                restaurants={item.restaurants}
+                description={item.description}
+              />
+            );
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
