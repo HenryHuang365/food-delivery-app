@@ -5,6 +5,7 @@ import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
 import fullStar from '../assets/images/fullStar.png';
 import DishRow from '@/components/dish-row';
+import CartIcon from '@/components/cartIcon';
 
 function asString(value: string | string[]): string {
   return Array.isArray(value) ? value[0] : value;
@@ -19,6 +20,7 @@ export default function RestaurantScreen() {
 
   return (
     <View>
+      <CartIcon />
       <ScrollView>
         <View className="relative">
           {restaurant && (
