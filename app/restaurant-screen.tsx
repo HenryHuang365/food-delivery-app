@@ -63,9 +63,11 @@ export default function RestaurantScreen() {
             </Text>
           </View>
         </View>
+
+        {/* Menu */}
         <View className="pb-36 bg-white">
           <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
-          {/* dishes */}
+          {/* Dish Row */}
           {restaurant?.dishes.map((dish, index) => {
             return <DishRow key={index} dish={dish} />;
           })}
