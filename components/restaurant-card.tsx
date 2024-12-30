@@ -14,7 +14,23 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
   const router = useRouter();
 
   return (
-    <Pressable onPress={() => router.push('/restaurant-screen')}>
+    <Pressable
+      onPress={() =>
+        router.push({
+          pathname: '/restaurant-screen',
+          params: {
+            id: item.id,
+            name: item.name,
+            stars: item.stars,
+            reviews: item.reviews,
+            category: item.category,
+            address: item.address,
+            image: item.image,
+            description: item.description,
+          },
+        })
+      }
+    >
       <View
         style={{
           shadowColor: themeColors.bgColor(0.2),
