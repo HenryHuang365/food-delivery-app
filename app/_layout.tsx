@@ -12,6 +12,10 @@ export default function RootLayout() {
           name="restaurant-screen"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="cart-screen"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
