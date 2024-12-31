@@ -16,6 +16,14 @@ export default function RootLayout() {
           name="cart-screen"
           options={{ headerShown: false, presentation: 'modal' }}
         />
+        <Stack.Screen
+          name="order-prepare-screen"
+          options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        />
+        <Stack.Screen
+          name="delivery-screen"
+          options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
