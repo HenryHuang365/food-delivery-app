@@ -2,16 +2,22 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { useRouter } from 'expo-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectRestaurant } from '@/slices/restaurant-slice';
 import { themeColors } from '@/theme';
 import bikeGuy from '../assets/images/bikeGuy2.gif';
 import deliveryGuy from '../assets/images/deliveryGuy3.jpg';
 import * as Icon from 'react-native-feather';
+import { emptyCart } from '@/slices/cart-slice';
 
 export default function DeliverScreen() {
   const router = useRouter();
   const restaurant = useSelector(selectRestaurant);
+  const dispatch = useDispatch();
+  const cancelOrder = () => {
+    router.dismissAll();
+    dispatch(emptyCart());
+  };
 
   return (
     <View className="flex-1">
@@ -73,7 +79,7 @@ export default function DeliverScreen() {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => router.dismissAll()}
+              onPress={cancelOrder}
               className="bg-white p-2 rounded-full"
             >
               <Icon.X
