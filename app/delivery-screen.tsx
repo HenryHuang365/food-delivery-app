@@ -2,7 +2,8 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { useRouter } from 'expo-router';
-import { featured } from '@/constants';
+import { useSelector } from 'react-redux';
+import { selectRestaurant } from '@/slices/restaurant-slice';
 import { themeColors } from '@/theme';
 import bikeGuy from '../assets/images/bikeGuy2.gif';
 import deliveryGuy from '../assets/images/deliveryGuy3.jpg';
@@ -10,7 +11,7 @@ import * as Icon from 'react-native-feather';
 
 export default function DeliverScreen() {
   const router = useRouter();
-  const restaurant = featured.restaurants[0];
+  const restaurant = useSelector(selectRestaurant);
 
   return (
     <View className="flex-1">

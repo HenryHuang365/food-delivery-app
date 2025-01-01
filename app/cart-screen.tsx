@@ -3,12 +3,14 @@ import React from 'react';
 import { useRouter } from 'expo-router';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
-import { featured } from '@/constants';
 import bikeGuy from '../assets/images/bikeGuy.png';
+import { useSelector } from 'react-redux';
+import { selectRestaurant } from '@/slices/restaurant-slice';
 
 export default function CartScreen() {
   const router = useRouter();
-  const restaurant = featured.restaurants[0];
+  const restaurant = useSelector(selectRestaurant);
+
   return (
     <View className="bg-white flex-1">
       {/* Back Button */}

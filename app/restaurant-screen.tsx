@@ -7,6 +7,9 @@ import fullStar from '../assets/images/fullStar.png';
 import DishRow from '@/components/dish-row';
 import CartIcon from '@/components/cartIcon';
 import { StatusBar } from 'expo-status-bar';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setRestaurant } from '@/slices/restaurant-slice';
 
 function asString(value: string | string[]): string {
   return Array.isArray(value) ? value[0] : value;
@@ -18,6 +21,13 @@ export default function RestaurantScreen() {
 
   const id = asString(params.id);
   const restaurant = featured.restaurants.find((r) => r.id === Number(id));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (restaurant && restaurant.id) {
+      dispatch(setRestaurant({ ...restaurant }));
+    }
+  }, []);
 
   return (
     <View>
