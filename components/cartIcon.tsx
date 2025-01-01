@@ -2,9 +2,14 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { themeColors } from '@/theme';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
+import { selectCartItems } from '@/slices/cart-slice';
 
 export default function CartIcon() {
   const router = useRouter();
+  const cartItems = useSelector(selectCartItems);
+  if (cartItems.length === 0) return; // If no items are added, do not show cart icon.
+
   return (
     <View className="absolute bottom-5 w-full z-50">
       <TouchableOpacity

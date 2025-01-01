@@ -1,8 +1,14 @@
 import { Text, View, Image, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { Dish } from './featured-row';
 import { themeColors } from '@/theme';
 import * as Icon from 'react-native-feather';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItems,
+} from '@/slices/cart-slice';
 
 interface DishRowProps {
   dish: Dish;
@@ -10,7 +16,17 @@ interface DishRowProps {
 
 export default function DishRow({ dish }: DishRowProps) {
   const image = dish.image;
-  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const totalItems = cartItems.filter((c) => c.id === dish.id);
+  const handleIncrease = () => {
+    dispatch(addToCart({ ...dish }));
+  };
+
+  const handleDecrease = () => {
+    dispatch(removeFromCart({ id: dish.id }));
+  };
+
   return (
     <View className="flex-row items-center bg-white p-3 rounded-3xl shadow-2xl mb-3 mx-2">
       <Image
@@ -27,7 +43,8 @@ export default function DishRow({ dish }: DishRowProps) {
           <Text className="text-gray-700 text-lg font-bold">${dish.price}</Text>
           <View className="flex-row items-center">
             <TouchableOpacity
-              onPress={() => setCount(count - 1 < 0 ? 0 : count - 1)}
+              onPress={handleDecrease}
+              disabled={totalItems.length === 0}
               className="p-1 rounded-full"
               style={{ backgroundColor: themeColors.bgColor(1) }}
             >
@@ -39,14 +56,14 @@ export default function DishRow({ dish }: DishRowProps) {
               />
             </TouchableOpacity>
 
-            <Text className="px-3">{count}</Text>
+            <Text className="px-3">{totalItems.length}</Text>
 
             <TouchableOpacity
+              onPress={handleIncrease}
               className="p-1 rounded-full"
               style={{ backgroundColor: themeColors.bgColor(1) }}
             >
               <Icon.Plus
-                onPress={() => setCount(count + 1)}
                 strokeWidth={2}
                 height={20}
                 width={20}
