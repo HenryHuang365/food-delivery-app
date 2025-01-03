@@ -113,7 +113,7 @@ export default function CartScreen() {
       >
         <View className="flex-row justify-between">
           <Text className="text-gray-700">Subtotal</Text>
-          <Text className="text-gray-700">${cartTotal}</Text>
+          <Text className="text-gray-700">${cartTotal.toFixed(2)}</Text>
         </View>
 
         <View className="flex-row justify-between">
@@ -124,7 +124,7 @@ export default function CartScreen() {
         <View className="flex-row justify-between">
           <Text className="text-gray-700 font-extrabold">Total</Text>
           <Text className="text-gray-700 font-extrabold">
-            ${cartTotal + deliveryFee}
+            ${(cartTotal + deliveryFee).toFixed(2)}
           </Text>
         </View>
         <View>

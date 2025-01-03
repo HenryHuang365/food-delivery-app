@@ -29,7 +29,9 @@ export default function CartIcon() {
         <Text className="flex-1 text-center font-extrabold text-white text-lg">
           View Cart
         </Text>
-        <Text className="font-extrabold text-white text-lg">${cartTotal}</Text>
+        <Text className="font-extrabold text-white text-lg">
+          ${cartTotal.toFixed(2)}
+        </Text>
       </TouchableOpacity>
     </View>
   );
