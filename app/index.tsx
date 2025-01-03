@@ -1,4 +1,10 @@
-import { Text, TextInput, View, ScrollView } from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -7,6 +13,7 @@ import { themeColors } from '@/theme';
 import Categories from '@/components/categories';
 import FeaturedRow, { Restaurant } from '@/components/featured-row';
 import { getFeaturedRestaurants } from '@/api';
+import { useRouter } from 'expo-router';
 
 interface featuredRestaurant {
   _id: string;
@@ -16,6 +23,7 @@ interface featuredRestaurant {
 }
 
 export default function Index() {
+  const router = useRouter();
   const [featuredRestaurants, setFeaturedRestaurants] = useState<
     featuredRestaurant[]
   >([]);
@@ -47,17 +55,18 @@ export default function Index() {
             </Text>
           </View>
         </View>
-        <View
+        <TouchableOpacity
+          onPress={() => router.push('/cart-screen')}
           style={{ backgroundColor: themeColors.bgColor(1) }}
           className="p-3 rounded-full"
         >
-          <Icon.Sliders
+          <Icon.ShoppingCart
             height="20"
             width="20"
-            strokeWidth={2.5}
+            strokeWidth={3}
             stroke="white"
           />
-        </View>
+        </TouchableOpacity>
       </View>
 
       {/* Main Page */}

@@ -41,7 +41,7 @@ export default function RestaurantScreen() {
   }, [restaurant]);
 
   return (
-    <View>
+    <View className="bg-white flex-1">
       <CartIcon />
       <StatusBar style="light" />
       <ScrollView>
