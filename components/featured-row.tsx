@@ -2,26 +2,27 @@ import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
 import { themeColors } from '@/theme';
 import RestaurantCard from './restaurant-card';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export interface Dish {
-  id: number;
+  _id: number;
   name: string;
   description: string;
   price: number;
-  image: any;
+  image: SanityImageSource;
 }
 
 export interface Restaurant {
-  id: number;
+  _id: number;
   name: string;
-  image: any;
+  image: SanityImageSource;
   description: string;
   lng: number;
   lat: number;
   address: string;
   stars: number;
   reviews: string;
-  category: string;
+  type: { name: string };
   dishes: Dish[];
 }
 

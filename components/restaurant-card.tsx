@@ -5,6 +5,7 @@ import fullStar from '../assets/images/fullStar.png';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
 import { useRouter } from 'expo-router';
+import { urlFor } from '@/sanity';
 
 interface RestaurantCardProps {
   item: Restaurant;
@@ -19,14 +20,7 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
         router.push({
           pathname: '/restaurant-screen',
           params: {
-            id: item.id,
-            name: item.name,
-            stars: item.stars,
-            reviews: item.reviews,
-            category: item.category,
-            address: item.address,
-            image: item.image,
-            description: item.description,
+            id: item._id,
           },
         })
       }
@@ -38,7 +32,10 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
         }}
         className="mr-6 bg-white rounded-3xl shadow-lg"
       >
-        <Image className="h-36 w-64 rounded-t-3xl" source={item.image} />
+        <Image
+          className="h-36 w-64 rounded-t-3xl"
+          source={{ uri: urlFor(item.image).url() }}
+        />
         <View className="flex-col px-3 pt-2 pb-4 gap-4">
           <Text className="text-lg font-bold">{item.name}</Text>
           <View className="flex-col gap-2">
@@ -48,7 +45,7 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
                 <Text className="text-green-700">{item.stars}</Text>
                 <Text className="text-gray-700">
                   ({item.reviews} reviews) -{' '}
-                  <Text className="font-semibold">{item.category}</Text>
+                  <Text className="font-semibold">{item.type.name}</Text>
                 </Text>
               </Text>
             </View>

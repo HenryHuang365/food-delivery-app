@@ -12,6 +12,7 @@ import {
   selectCartTotal,
 } from '@/slices/cart-slice';
 import { Dish } from '@/components/featured-row';
+import { urlFor } from '@/sanity';
 
 export default function CartScreen() {
   const router = useRouter();
@@ -25,9 +26,9 @@ export default function CartScreen() {
   useEffect(() => {
     const map: Map<number, Dish[]> = new Map();
     cartItems.forEach((item) => {
-      const value = map.get(item.id) || [];
+      const value = map.get(item._id) || [];
       value.push(item);
-      map.set(item.id, value);
+      map.set(item._id, value);
     });
     setItemsMap(map);
   }, [cartItems]);
@@ -80,7 +81,7 @@ export default function CartScreen() {
               </Text>
               <Image
                 className="h-14 w-14 rounded-full"
-                source={dishes[0].image}
+                source={{ uri: urlFor(dishes[0].image).url() }}
               />
               <Text className="w-0 flex-1 font-bold text-gray-700">
                 {dishes[0].name}
@@ -89,7 +90,7 @@ export default function CartScreen() {
                 ${dishes[0].price * dishes.length}
               </Text>
               <TouchableOpacity
-                onPress={() => dispatch(removeFromCart({ id: dishes[0].id }))}
+                onPress={() => dispatch(removeFromCart({ id: dishes[0]._id }))}
                 className="p-1 rounded-full"
                 style={{ backgroundColor: themeColors.bgColor(1) }}
               >

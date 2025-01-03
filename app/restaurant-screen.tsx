@@ -1,6 +1,5 @@
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { featured } from '@/constants';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
 import fullStar from '../assets/images/fullStar.png';
@@ -8,8 +7,11 @@ import DishRow from '@/components/dish-row';
 import CartIcon from '@/components/cartIcon';
 import { StatusBar } from 'expo-status-bar';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setRestaurant } from '@/slices/restaurant-slice';
+import { getRestaurantById } from '@/api';
+import { Restaurant } from '@/components/featured-row';
+import { urlFor } from '@/sanity';
 
 function asString(value: string | string[]): string {
   return Array.isArray(value) ? value[0] : value;
@@ -20,14 +22,23 @@ export default function RestaurantScreen() {
   const params = useLocalSearchParams();
 
   const id = asString(params.id);
-  const restaurant = featured.restaurants.find((r) => r.id === Number(id));
+  const [restaurant, setCurrRestaurant] = useState<Restaurant>();
+  useEffect(() => {
+    getRestaurantById(id)
+      .then((data: Restaurant[]) => {
+        setCurrRestaurant(data[0]);
+      })
+      .catch((error) => {
+        console.error('Error fetching restaurant:', error);
+      });
+  }, [id]);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (restaurant && restaurant.id) {
+    if (restaurant && restaurant._id) {
       dispatch(setRestaurant({ ...restaurant }));
     }
-  }, []);
+  }, [restaurant]);
 
   return (
     <View>
@@ -38,7 +49,7 @@ export default function RestaurantScreen() {
           {restaurant && (
             <Image
               className="w-full h-72 rounded-t-3xl"
-              source={restaurant.image}
+              source={{ uri: urlFor(restaurant.image).url() }}
             />
           )}
           <TouchableOpacity
@@ -61,7 +72,7 @@ export default function RestaurantScreen() {
                   <Text className="text-green-700">{restaurant?.stars}</Text>
                   <Text className="text-gray-700">
                     ({restaurant?.reviews} reviews) -{' '}
-                    <Text>{restaurant?.category}</Text>
+                    <Text>{restaurant?.type.name}</Text>
                   </Text>
                 </Text>
               </View>
@@ -82,9 +93,10 @@ export default function RestaurantScreen() {
         <View className="pb-36 bg-white">
           <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
           {/* Dish Row */}
-          {restaurant?.dishes.map((dish, index) => {
-            return <DishRow key={index} dish={dish} />;
-          })}
+          {restaurant &&
+            restaurant.dishes.map((dish, index) => {
+              return <DishRow key={index} dish={dish} />;
+            })}
         </View>
       </ScrollView>
     </View>

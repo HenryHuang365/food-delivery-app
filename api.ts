@@ -1,4 +1,5 @@
 import { Category } from './components/categories';
+import { Restaurant } from './components/featured-row';
 import { client } from './sanity';
 
 const sanityQuery = (query: any) => client.fetch(query);
@@ -24,6 +25,22 @@ export const getFeaturedRestaurants = () => {
 
 export const getCategories = (): Promise<Category[]> => {
   return sanityQuery(`*[_type == 'category'] | order(name asc)`);
+};
+
+export const getRestaurantById = (id: string): Promise<Restaurant[]> => {
+  return sanityQuery(
+    `
+      *[_type == 'restaurant' && _id == '${id}'] {
+        ...,
+        dishes[]->{
+          ...
+        },
+        type->{
+          name
+        }
+      }
+    `,
+  );
 };
 
 export const getFeaturedRestaurantsById = (id: string) => {

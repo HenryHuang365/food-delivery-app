@@ -9,22 +9,22 @@ import {
   removeFromCart,
   selectCartItems,
 } from '@/slices/cart-slice';
+import { urlFor } from '@/sanity';
 
 interface DishRowProps {
   dish: Dish;
 }
 
 export default function DishRow({ dish }: DishRowProps) {
-  const image = dish.image;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
-  const totalItems = cartItems.filter((c) => c.id === dish.id);
+  const totalItems = cartItems.filter((c) => c._id === dish._id);
   const handleIncrease = () => {
     dispatch(addToCart({ ...dish }));
   };
 
   const handleDecrease = () => {
-    dispatch(removeFromCart({ id: dish.id }));
+    dispatch(removeFromCart({ id: dish._id }));
   };
 
   return (
@@ -32,7 +32,7 @@ export default function DishRow({ dish }: DishRowProps) {
       <Image
         className="rounded-3xl"
         style={{ height: 100, width: 100 }}
-        source={image}
+        source={{ uri: urlFor(dish.image).url() }}
       />
       <View className="flex-col flex-1 gap-3">
         <View className="pl-3">
