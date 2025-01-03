@@ -25,6 +25,8 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Demo 🎥
+## Demo :movie_camera:
 
-[![Watch the demo](https://github.com/HenryHuang365/food-delivery-app/blob/master/assets/images/cover-picture.jpg)](https://www.icloud.com/iclouddrive/0ddOqqSZHA6f4VurkyDhI-9QQ#food-delivery-app)
+![](./assets/images/cover-picture.jpg)
+
+### View live preview [here](https://www.icloud.com/iclouddrive/0ddOqqSZHA6f4VurkyDhI-9QQ#food-delivery-app).
