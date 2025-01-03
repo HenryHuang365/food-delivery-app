@@ -27,4 +27,4 @@ You can start developing by editing the files inside the **app** directory. This
 
 ## Demo 🎥
 
-[![Watch the demo](https://share.icloud.com/photos/01a1hAZ1-Qxl-bDBH7CZ_OGzQ)](https://www.icloud.com/iclouddrive/0ddOqqSZHA6f4VurkyDhI-9QQ#food-delivery-app)
+[![Watch the demo](https://github.com/HenryHuang365/food-delivery-app/blob/master/assets/images/cover-picture.jpg)](https://www.icloud.com/iclouddrive/0ddOqqSZHA6f4VurkyDhI-9QQ#food-delivery-app)
