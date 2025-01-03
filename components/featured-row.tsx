@@ -20,7 +20,7 @@ export interface Restaurant {
   lng: number;
   lat: number;
   address: string;
-  stars: number;
+  rating: number;
   reviews: string;
   type: { name: string };
   dishes: Dish[];

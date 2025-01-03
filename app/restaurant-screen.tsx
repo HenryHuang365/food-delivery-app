@@ -69,7 +69,7 @@ export default function RestaurantScreen() {
               <View className="flex-row items-center gap-1">
                 <Image source={fullStar} className="h-4 w-4" />
                 <Text className="text-xs">
-                  <Text className="text-green-700">{restaurant?.stars}</Text>
+                  <Text className="text-green-700">{restaurant?.rating} </Text>
                   <Text className="text-gray-700">
                     ({restaurant?.reviews} reviews) -{' '}
                     <Text>{restaurant?.type.name}</Text>

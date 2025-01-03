@@ -30,7 +30,7 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
           shadowColor: themeColors.bgColor(0.2),
           shadowRadius: 7,
         }}
-        className="mr-6 bg-white rounded-3xl shadow-lg"
+        className="w-64 mr-6 bg-white rounded-3xl shadow-lg"
       >
         <Image
           className="h-36 w-64 rounded-t-3xl"
@@ -42,7 +42,7 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
             <View className="flex-row items-center gap-1">
               <Image source={fullStar} className="h-4 w-4" />
               <Text className="text-xs">
-                <Text className="text-green-700">{item.stars}</Text>
+                <Text className="text-green-700">{item.rating} </Text>
                 <Text className="text-gray-700">
                   ({item.reviews} reviews) -{' '}
                   <Text className="font-semibold">{item.type.name}</Text>
@@ -51,7 +51,11 @@ export default function RestaurantCard({ item }: RestaurantCardProps) {
             </View>
             <View className="flex-row items-center gap-1">
               <Icon.MapPin color="gray" width="15" height="15" />
-              <Text className="text-gray-700 text-xs">
+              <Text
+                className="text-gray-700 text-xs pr-6"
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
                 Nearby - {item.address}
               </Text>
             </View>

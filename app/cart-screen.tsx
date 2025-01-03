@@ -5,7 +5,6 @@ import * as Icon from 'react-native-feather';
 import { themeColors } from '@/theme';
 import bikeGuy from '../assets/images/bikeGuy.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRestaurant } from '@/slices/restaurant-slice';
 import {
   removeFromCart,
   selectCartItems,
@@ -16,7 +15,6 @@ import { urlFor } from '@/sanity';
 
 export default function CartScreen() {
   const router = useRouter();
-  const restaurant = useSelector(selectRestaurant);
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
@@ -36,18 +34,15 @@ export default function CartScreen() {
   return (
     <View className="bg-white flex-1">
       {/* Back Button */}
-      <View className="relative py-4 shadow-sm">
+      <View className="relative flex-row py-4 shadow-sm items-center justify-center">
         <TouchableOpacity
           onPress={() => router.back()}
           style={{ backgroundColor: themeColors.bgColor(1) }}
-          className="absolute z-10 rounded-full p-1 shadow top-5 left-2"
+          className="absolute left-4 z-10 rounded-full p-1 shadow items-center justify-center"
         >
           <Icon.ArrowLeft strokeWidth={3} stroke="white" />
         </TouchableOpacity>
-        <View>
-          <Text className="text-center font-bold text-xl">Your cart</Text>
-          <Text className="text-center text-gray-500">{restaurant.name}</Text>
-        </View>
+        <Text className="font-bold text-xl">Your cart</Text>
       </View>
 
       {/* Delivery Time */}
